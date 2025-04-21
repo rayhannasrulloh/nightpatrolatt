@@ -28,7 +28,7 @@
                 </div>
                 <div class="item-menu text-center">
                     <div class="menu-icon">
-                        <a href="" class="primary" style="font-size: 40px;">
+                        <a href="" class="green" style="font-size: 40px;">
                             <ion-icon name="calendar-number"></ion-icon>
                         </a>
                     </div>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="item-menu text-center">
                     <div class="menu-icon">
-                        <a href="" class="warning" style="font-size: 40px;">
+                        <a href="" class="green" style="font-size: 40px;">
                             <ion-icon name="document-text"></ion-icon>
                         </a>
                     </div>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="item-menu text-center">
                     <div class="menu-icon">
-                        <a href="" class="danger" style="font-size: 40px;">
+                        <a href="" class="green" style="font-size: 40px;">
                             <ion-icon name="location"></ion-icon>
                         </a>
                     </div>

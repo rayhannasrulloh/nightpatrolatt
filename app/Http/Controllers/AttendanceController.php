@@ -41,7 +41,7 @@ class AttendanceController extends Controller
                 echo "success|Thank you, you have clocked out successfully.|out";
                 Storage::put($file, $imageBase64);
             } else {
-                echo "error|Sorry, there was an error while attendance.|out";
+                echo "error|Sorry, there was an error while clock out.|out";
             }
         } else {
             $data_in = [
@@ -56,7 +56,7 @@ class AttendanceController extends Controller
                 echo "success|Thank you, you have clocked in successfully|in";
                 Storage::put($file, $imageBase64);
             } else {
-                echo "error|Sorry, there was an error while attendance.|in";
+                echo "error|Sorry, there was an error while clock in.|in";
             }
         }
         
