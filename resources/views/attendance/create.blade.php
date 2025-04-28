@@ -68,7 +68,8 @@
 <script>
 
     var notif_in = document.getElementById('notif_in');
-    var notif_out = document.getElementById('notif_out')
+    var notif_out = document.getElementById('notif_out');
+    
     Webcam.set({
         width: 480,
         height: 320,
