@@ -62,6 +62,9 @@
 <audio id="notif_out">
     <source src="{{ asset('assets/sound/tung-tung.mp3') }}" type="audio/mpeg">
 </audio>
+<audio id="radius_sound">
+    <source src="{{ asset('assets/sound/tung-tung.mp3') }}" type="audio/mpeg">
+</audio>
 @endsection
 
 @push('myscript')
@@ -69,7 +72,8 @@
 
     var notif_in = document.getElementById('notif_in');
     var notif_out = document.getElementById('notif_out');
-    
+    var radius_sound = document.getElementById('radius_sound');
+
     Webcam.set({
         width: 480,
         height: 320,
@@ -96,7 +100,7 @@
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.5,
-            radius: 40
+            radius: 30
         }).addTo(map);
     }
 
@@ -136,9 +140,12 @@
                         window.location.href = '/dashboard';
                     }, 2000);
                 } else {
+                    if(status[2]=="radius"){
+                        radius_sound.play();
+                    }
                     Swal.fire({
                         title: 'Error!',
-                        text: 'Sorry, error occurred!',
+                        text: status[1],
                         icon: 'error'
                     });
                 }
