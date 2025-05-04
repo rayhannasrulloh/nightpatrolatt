@@ -21,8 +21,8 @@ class AttendanceController extends Controller
         $employee_id = Auth::guard('employee')->user()->employee_id;
         $attd_date = date("Y-m-d");
         $clock = date("H:i:s");
-        $lat_office = -6.282638892022198;
-        $long_office = 107.17071117571759;
+        $lat_office = -6.279224178172397;
+        $long_office = 107.18188250564448;
         $loc = $request->location;
         $user_loc = explode(",", $loc);
         $user_lat = $user_loc[0];
@@ -30,18 +30,23 @@ class AttendanceController extends Controller
 
         $distance = $this->distance($lat_office, $long_office, $user_lat, $user_long);
         $radius = round($distance['meters']);
+        $check = DB::table('attendance')->where('employee_id', $employee_id)->where('attd_date', $attd_date)->count();
 
-        
+        if ($check > 0) {
+            $info = "out";
+        } else {
+            $info = "in";
+        }
         $image = $request->image;
         $folderPath = "public/uploads/attendance/";
-        $formatName = $employee_id . "-" . $attd_date;
+        $formatName = $employee_id . "-" . $attd_date . "-" . $info;
         $imageParts = explode(";base64", $image);
         $imageBase64 = base64_decode($imageParts[1]);
         $fileName = $formatName . ".png";
         $file = $folderPath . $fileName;
         
-        $check = DB::table('attendance')->where('employee_id', $employee_id)->where('attd_date', $attd_date)->count();
-        if($radius > 30) {
+        
+        if($radius > 1500) {
             echo "error|Sorry, you are outside the office radius, your radius {$radius} meter|radius";
             return;
         } else {
@@ -79,7 +84,7 @@ class AttendanceController extends Controller
         
     }
 
-    // calculate distance between two coordinates
+    //calculate distance between two coordinates
     function distance($lat1, $lon1, $lat2, $lon2)
     {
         $theta = $lon1 - $lon2;
