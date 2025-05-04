@@ -70,11 +70,11 @@
                             <div class="iconpresence">
                                 @if ($today_attendance != null)
                                 @php
-                                    $path = Storage::url('app/private/public/uploads/attendance/'.$today_attendance->photo_in);
+                                    $path = Storage::url('uploads/attendance/'.$today_attendance->photo_in);
                                 @endphp
-                                <img src="{{ url($path) }}" alt="image" class="imaged w64 rounded">
+                                    <img src="{{ url($path) }}" alt="image" class="imaged w48 rounded">
                                 @else
-                                <ion-icon name="camera"></ion-icon>
+                                    <ion-icon name="camera"></ion-icon>
                                 @endif
                             </div>
                             <div class="presencedetail">
@@ -92,11 +92,11 @@
                             <div class="iconpresence">
                                 @if ($today_attendance != null && $today_attendance->photo_out != null)
                                 @php
-                                    $path = Storage::url('app/private/public/uploads/attendance/'.$today_attendance->photo_out);
+                                    $path = Storage::url('uploads/attendance/'.$today_attendance->photo_out);
                                 @endphp
-                                <img src="{{ url($path) }}" alt="image" class="imaged w64 rounded">
+                                    <img src="{{ url($path) }}" alt="image" class="imaged w48 rounded">
                                 @else
-                                <ion-icon name="camera"></ion-icon>
+                                    <ion-icon name="camera"></ion-icon>
                                 @endif
                             </div>
                             <div class="presencedetail">
@@ -110,6 +110,51 @@
         </div>
     </div>
 
+    <div class="attendance-recap">
+        <h3>Attendance Recap {{ $month_name[$this_month] }} {{ $this_year }}</h3>
+        <div class="row">
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-body text-center" style="padding: 12px 12px !important;">
+                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">10</span>
+                        <ion-icon name="accessibility-outline" style="font-size: 1.6rem;" class="text-primary"></ion-icon>
+                        <br>
+                        <span style="font-size: 0.8rem">Present</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-body text-center" style="padding: 12px 12px !important;">
+                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">10</span>
+                        <ion-icon name="newspaper-outline" style="font-size: 1.6rem;" class="text-success"></ion-icon>
+                        <br>
+                        <span style="font-size: 0.8rem">Permit</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-body text-center" style="padding: 12px 12px !important;">
+                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">10</span>
+                        <ion-icon name="medkit-outline" style="font-size: 1.6rem;" class="text-danger"></ion-icon>
+                        <br>
+                        <span style="font-size: 0.8rem">Sick</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-body text-center" style="padding: 12px 12px !important;">
+                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">10</span>
+                        <ion-icon name="alarm-outline" style="font-size: 1.6rem;" class="text-warning"></ion-icon>
+                        <br>
+                        <span style="font-size: 0.8rem">Late</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <div class="presencetab mt-2">
         <div class="tab-pane fade show active" id="pilled" role="tabpanel">
@@ -131,9 +176,6 @@
             <div class="tab-pane fade show active" id="home" role="tabpanel">
                 <ul class="listview image-listview">
                     @foreach ($history_this_month as $d)
-                    @php
-                        $path = Storage::url('app/private/public/uploads/attendance/'.$d->photo_in);
-                    @endphp
                     <li>
                         <div class="item">
                             <div class="icon-box bg-primary">
@@ -142,7 +184,7 @@
                             <div class="in">
                                 <div>{{ date("Y-m-d",strtotime($d->attd_date)) }}</div>
                                 <span class="badge badge-success">{{ $d->clock_in }}</span>
-                                <span class="badge badge-danger">{{ $d->clock_out }}</span>
+                                <span class="badge badge-danger">{{ $today_attendance != null && $d->clock_out != null ? $d->clock_out : 'not yet' }}</span>
                             </div>
                         </div>
                     </li>

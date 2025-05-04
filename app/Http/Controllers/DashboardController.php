@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function index(){
         $today = date('Y-m-d');
-        $this_month = date('m');
+        $this_month = date('m') * 1;
         $this_year = date('Y');
         $employee_id = Auth::user()->employee_id;
         $today_attendance = DB::table('attendance')
@@ -20,6 +20,21 @@ class DashboardController extends Controller
         ->whereRaw('YEAR(attd_date)="'.$this_year.'"')
         ->orderBy('attd_date')
         ->get();
-        return view('dashboard.dashboard',compact('today_attendance','history_this_month'));
+
+        $month_name = array(
+            1 => 'January',
+            2 => 'February',
+            3 => 'March',
+            4 => 'April',
+            5 => 'May',
+            6 => 'June',
+            7 => 'July',
+            8 => 'August',
+            9 => 'September',
+            10 => 'October',
+            11 => 'November',
+            12 => 'December'
+        );
+        return view('dashboard.dashboard',compact('today_attendance','history_this_month','month_name','this_month','this_year'));
     }
 }
