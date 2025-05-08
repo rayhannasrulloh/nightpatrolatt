@@ -16,11 +16,21 @@ class DashboardController extends Controller
         $today_attendance = DB::table('attendance')
             ->where('employee_id', $employee_id)
             ->where('attd_date', $today)->first();
-        $history_this_month = DB::table('attendance')->whereRaw('MONTH(attd_date)="'.$this_month.'"')
-        ->whereRaw('YEAR(attd_date)="'.$this_year.'"')
-        ->orderBy('attd_date')
-        ->get();
+        $history_this_month = DB::table('attendance')
+            ->where('employee_id', $employee_id)
+            ->whereRaw('MONTH(attd_date)="'.$this_month.'"')
+            ->whereRaw('YEAR(attd_date)="'.$this_year.'"')
+            ->orderBy('attd_date')
+            ->get();
 
+        $attendance_recap = DB::table('attendance')
+        ->selectRaw('COUNT(employee_id) as total_attendance')
+        ->where('employee_id', $employee_id)
+        ->whereRaw('MONTH(attd_date)="'.$this_month.'"')
+        ->whereRaw('YEAR(attd_date)="'.$this_year.'"')
+        ->first();
+
+        // dd($attendance_recap);
         $month_name = array(
             1 => 'January',
             2 => 'February',
@@ -35,6 +45,6 @@ class DashboardController extends Controller
             11 => 'November',
             12 => 'December'
         );
-        return view('dashboard.dashboard',compact('today_attendance','history_this_month','month_name','this_month','this_year'));
+        return view('dashboard.dashboard',compact('today_attendance','history_this_month','month_name','this_month','this_year', 'attendance_recap'));
     }
 }
