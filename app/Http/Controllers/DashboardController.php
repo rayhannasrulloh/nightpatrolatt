@@ -24,13 +24,14 @@ class DashboardController extends Controller
             ->get();
 
         $attendance_recap = DB::table('attendance')
-        ->selectRaw('COUNT(employee_id) as total_attendance')
+        ->selectRaw('COUNT(employee_id) as total_attendance, SUM(IF(clock_in > "00:01",1,0)) as total_late')
         ->where('employee_id', $employee_id)
         ->whereRaw('MONTH(attd_date)="'.$this_month.'"')
         ->whereRaw('YEAR(attd_date)="'.$this_year.'"')
         ->first();
 
         // dd($attendance_recap);
+        
         $month_name = array(
             1 => 'January',
             2 => 'February',
