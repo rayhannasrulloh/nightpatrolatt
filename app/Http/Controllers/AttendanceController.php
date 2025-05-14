@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class AttendanceController extends Controller
 {
@@ -46,7 +48,7 @@ class AttendanceController extends Controller
         $file = $folderPath . $fileName;
         
         
-        if($radius > 1500) {
+        if($radius > 1500000000) {
             echo "error|Sorry, you are outside the office radius, your radius {$radius} meter|radius";
             return;
         } else {
@@ -97,5 +99,53 @@ class AttendanceController extends Controller
         $kilometers = $miles * 1.609344;
         $meters = $kilometers * 1000;
         return compact('meters');
+    }
+
+    public function editprofile()
+    {   $employee_id = Auth::guard('employee')->user()->employee_id;
+        $employee = DB::table('employee')->where('employee_id', $employee_id)->first();
+        
+        return view('attendance.editprofile', compact('employee'));
+    }
+
+    public function updateprofile(Request $request)
+    {
+        $employee_id = Auth::guard('employee')->user()->employee_id;
+        $full_name = $request->full_name;
+        $phone_number = $request->phone_number;
+        $password = Hash::make($request->password);
+        $employee = DB::table('employee')->where('employee_id', $employee_id)->first();
+
+        if ($request->hasFile('photo')) {
+            $photo = $employee_id.".".$request->file('photo')->getClientOriginalExtension();
+        } else {
+            $photo = $employee->photo;
+        }
+
+        if(!empty($request->password)){
+            $data = [
+                'full_name' => $full_name,
+                'phone_number' => $phone_number,
+                'password' => $password,
+                'photo' => $photo
+            ];
+        } else {
+            $data = [
+                'full_name' => $full_name,
+                'phone_number' => $phone_number,
+                'photo' => $photo
+            ];
+        }
+
+        $update = DB::table('employee')->where('employee_id', $employee_id)->update($data);
+        if ($update) {
+            if ($request->hasFile('photo')) {
+                $folderPath = "public/uploads/employee/";
+                $request->file('photo')->storeAs($folderPath, $photo);
+            }
+            return Redirect::back()->with('success', 'Profile updated successfully');
+        } else {
+            return Redirect::back()->with('error', 'Failed to update profile');
+        }
     }
 }

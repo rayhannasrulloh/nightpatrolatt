@@ -18,4 +18,7 @@ Route::middleware(['auth:employee'])->group(function () {
 
     Route::get('/attendance/create',[AttendanceController::class, 'create']);
     Route::post('/attendance/store',[AttendanceController::class, 'store']);
+
+    Route::get('/editprofile',[AttendanceController::class, 'editprofile']);
+    Route::post('/attendance/{employee_id}/updateprofile',[AttendanceController::class, 'updateprofile']);
 });

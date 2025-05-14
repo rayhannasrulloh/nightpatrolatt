@@ -42,7 +42,7 @@
             Clock-Out
         </button>
         @else
-        <button id="take-attd" class="btn btn-primary btn-block">
+        <button id="take-attd" class="btn btn-success btn-block">
             <ion-icon name="camera-outline"></ion-icon>
             Clock-In
         </button>

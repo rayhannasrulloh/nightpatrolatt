@@ -31,7 +31,13 @@ class DashboardController extends Controller
         ->first();
 
         // dd($attendance_recap);
-        
+
+        $leaderboard = DB::table('attendance')
+            ->join('employee', 'attendance.employee_id', '=', 'employee.employee_id')
+            ->where('attd_date', $today)
+            ->orderBy('clock_in', 'asc')
+            ->get();
+
         $month_name = array(
             1 => 'January',
             2 => 'February',
@@ -46,6 +52,6 @@ class DashboardController extends Controller
             11 => 'November',
             12 => 'December'
         );
-        return view('dashboard.dashboard',compact('today_attendance','history_this_month','month_name','this_month','this_year', 'attendance_recap'));
+        return view('dashboard.dashboard',compact('today_attendance','history_this_month','month_name','this_month','this_year', 'attendance_recap', 'leaderboard'));
     }
 }

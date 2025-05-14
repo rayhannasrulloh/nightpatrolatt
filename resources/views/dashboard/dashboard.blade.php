@@ -4,11 +4,16 @@
 <div class="section" id="user-section">
     <div id="user-detail">
         <div class="avatar">
-            <img src="assets/img/sample/avatar/avatar1.jpg" alt="avatar" class="imaged w64 rounded">
+            @if (Auth::guard('employee')->user()->photo)
+            @php
+                $path = Storage::url('uploads/employee/'.Auth::guard('employee')->user()->photo);
+            @endphp
+            <img src="{{ url($path) }}" alt="avatar" class="imaged w64 rounded" style="object-fit: cover;">
+            @endif
         </div>
         <div id="user-info">
-            <h2 id="user-name">Rayhan Roshidi Nasrulloh</h2>
-            <span id="user-role">Head of IT</span>
+            <h2 id="user-name">{{ Auth::guard('employee')->user()->full_name }}</h2>
+            <span id="user-role">{{ Auth::guard('employee')->user()->position }}</span>
         </div>
     </div>
 </div>
@@ -69,10 +74,10 @@
                         <div class="presencecontent">
                             <div class="iconpresence">
                                 @if ($today_attendance != null)
-                                @php
+                                {{-- @php
                                     $path = Storage::url('uploads/attendance/'.$today_attendance->photo_in);
-                                @endphp
-                                    <img src="{{ url($path) }}" alt="image" class="imaged w48 rounded">
+                                @endphp --}}
+                                    <ion-icon name="checkbox-outline"></ion-icon>
                                 @else
                                     <ion-icon name="camera"></ion-icon>
                                 @endif
@@ -91,10 +96,10 @@
                         <div class="presencecontent">
                             <div class="iconpresence">
                                 @if ($today_attendance != null && $today_attendance->photo_out != null)
-                                @php
+                                {{-- @php
                                     $path = Storage::url('uploads/attendance/'.$today_attendance->photo_out);
-                                @endphp
-                                    <img src="{{ url($path) }}" alt="image" class="imaged w48 rounded">
+                                @endphp --}}
+                                    <ion-icon name="checkbox-outline"></ion-icon>
                                 @else
                                     <ion-icon name="camera"></ion-icon>
                                 @endif
@@ -126,7 +131,7 @@
             <div class="col-3">
                 <div class="card">
                     <div class="card-body text-center" style="padding: 12px 12px !important;">
-                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">{{ $attendance_recap -> total_late }}</span>
+                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">0</span>
                         <ion-icon name="newspaper-outline" style="font-size: 1.6rem;" class="text-success"></ion-icon>
                         <br>
                         <span style="font-size: 0.8rem">Permit</span>
@@ -136,7 +141,7 @@
             <div class="col-3">
                 <div class="card">
                     <div class="card-body text-center" style="padding: 12px 12px !important;">
-                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">10</span>
+                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">0</span>
                         <ion-icon name="medkit-outline" style="font-size: 1.6rem;" class="text-danger"></ion-icon>
                         <br>
                         <span style="font-size: 0.8rem">Sick</span>
@@ -191,51 +196,28 @@
                     @endforeach
                 </ul>
             </div>
+            
             {{-- list leaderboard --}}
             <div class="tab-pane fade" id="profile" role="tabpanel">
                 <ul class="listview image-listview">
+                    @foreach ($leaderboard as $d)
+                        
                     <li>
                         <div class="item">
                             <img src="assets/img/sample/avatar/avatar1.jpg" alt="image" class="image">
                             <div class="in">
-                                <div>Edward Lindgren</div>
-                                <span class="text-muted">Designer</span>
+                                <div>
+                                    <p>{{ $d->full_name }}</p><br>
+                                    <small>{{ $d->position }}</small>
+                                </div>
+                                <span class="badge {{ $d->clock_in < "00:00" ? "bg-success" : "bg-danger" }}  ">
+                                    {{ $d->clock_in }}
+                                </span>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="item">
-                            <img src="assets/img/sample/avatar/avatar1.jpg" alt="image" class="image">
-                            <div class="in">
-                                <div>Emelda Scandroot</div>
-                                <span class="badge badge-primary">3</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item">
-                            <img src="assets/img/sample/avatar/avatar1.jpg" alt="image" class="image">
-                            <div class="in">
-                                <div>Henry Bove</div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item">
-                            <img src="assets/img/sample/avatar/avatar1.jpg" alt="image" class="image">
-                            <div class="in">
-                                <div>Henry Bove</div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item">
-                            <img src="assets/img/sample/avatar/avatar1.jpg" alt="image" class="image">
-                            <div class="in">
-                                <div>Henry Bove</div>
-                            </div>
-                        </div>
-                    </li>
+
+                    @endforeach
                 </ul>
             </div>
 
