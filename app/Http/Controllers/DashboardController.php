@@ -16,6 +16,7 @@ class DashboardController extends Controller
         $today_attendance = DB::table('attendance')
             ->where('employee_id', $employee_id)
             ->where('attd_date', $today)->first();
+        
         $history_this_month = DB::table('attendance')
             ->where('employee_id', $employee_id)
             ->whereRaw('MONTH(attd_date)="'.$this_month.'"')
@@ -23,6 +24,7 @@ class DashboardController extends Controller
             ->orderBy('attd_date')
             ->get();
 
+        //select 
         $attendance_recap = DB::table('attendance')
         ->selectRaw('COUNT(employee_id) as total_attendance, SUM(IF(clock_in > "00:01",1,0)) as total_late')
         ->where('employee_id', $employee_id)
@@ -32,6 +34,7 @@ class DashboardController extends Controller
 
         // dd($attendance_recap);
 
+        //select join
         $leaderboard = DB::table('attendance')
             ->join('employee', 'attendance.employee_id', '=', 'employee.employee_id')
             ->where('attd_date', $today)

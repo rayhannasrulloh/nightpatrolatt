@@ -21,9 +21,10 @@
     <div class="card">
         <div class="card-body text-center">
             <div class="list-menu">
+                {{-- Profile --}}
                 <div class="item-menu text-center">
                     <div class="menu-icon">
-                        <a href="" class="green" style="font-size: 40px;">
+                        <a href="/editprofile" class="green" style="font-size: 40px;">
                             <ion-icon name="person-sharp"></ion-icon>
                         </a>
                     </div>
@@ -31,7 +32,8 @@
                         <span class="text-center">Profile</span>
                     </div>
                 </div>
-                <div class="item-menu text-center">
+                {{-- Leave --}}
+                {{-- <div class="item-menu text-center">
                     <div class="menu-icon">
                         <a href="" class="green" style="font-size: 40px;">
                             <ion-icon name="calendar-number"></ion-icon>
@@ -40,8 +42,9 @@
                     <div class="menu-name">
                         <span class="text-center">Leave</span>
                     </div>
-                </div>
-                <div class="item-menu text-center">
+                </div> --}}
+                {{-- History --}}
+                {{-- <div class="item-menu text-center">
                     <div class="menu-icon">
                         <a href="" class="green" style="font-size: 40px;">
                             <ion-icon name="document-text"></ion-icon>
@@ -50,8 +53,9 @@
                     <div class="menu-name">
                         <span class="text-center">History</span>
                     </div>
-                </div>
-                <div class="item-menu text-center">
+                </div> --}}
+                {{-- Location --}}
+                {{-- <div class="item-menu text-center">
                     <div class="menu-icon">
                         <a href="" class="green" style="font-size: 40px;">
                             <ion-icon name="location"></ion-icon>
@@ -60,7 +64,7 @@
                     <div class="menu-name">
                         Location
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -216,7 +220,6 @@
                             </div>
                         </div>
                     </li>
-
                     @endforeach
                 </ul>
             </div>

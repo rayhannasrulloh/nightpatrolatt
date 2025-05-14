@@ -13,6 +13,7 @@ class AttendanceController extends Controller
 {
     public function create(){
         $today = date("Y-m-d");
+        //employee id
         $employee_id = Auth::guard('employee')->user()->employee_id;
         $check = DB::table('attendance')->where('employee_id', $employee_id)->where('attd_date', $today)->count();
         return view('attendance.create', compact('check'));
