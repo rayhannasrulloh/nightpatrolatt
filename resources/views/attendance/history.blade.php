@@ -21,7 +21,7 @@
                     <select name="month" id="month" class="form-control">
                         <option value="">Month</option>
                         @for ($i = 1; $i <= 12; $i++)
-                            <option value="{{ $i }}">{{ $monthName[$i] }}</option>
+                            <option value="{{ $i }}" {{ date("m") == $i ? 'selected' : '' }}>{{ $monthName[$i] }}</option>
                         @endfor
                     </select>
                 </div>
@@ -37,7 +37,7 @@
                             $currentYear = date('Y');
                         @endphp
                         @for ($year = $startYear; $year <= $currentYear; $year++)
-                            <option value="{{ $year }}">{{ $year }}</option>
+                            <option value="{{ $year }}" {{ date("Y") == $year ? 'selected' : '' }}>{{ $year }}</option>
                         @endfor
                     </select>
                 </div>
