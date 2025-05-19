@@ -6,12 +6,12 @@
                 <strong>Home</strong>
             </div>
         </a>
-        {{-- <a href="#" class="item">
+        <a href="/attendance/history" class="item">
             <div class="col">
                 <ion-icon name="document-text-outline" role="img" class="md hydrated"
                     aria-label="document text outline"></ion-icon>
                 <strong>History</strong>
-            </div> --}}
+            </div>
         </a>
         <a href="/attendance/create" class="item">
             <div class="col">
