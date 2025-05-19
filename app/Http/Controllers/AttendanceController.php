@@ -151,20 +151,23 @@ class AttendanceController extends Controller
     }
 
     public function history(){
-        $monthName = array(
-            1 => 'January',
-            2 => 'February',
-            3 => 'March',
-            4 => 'April',
-            5 => 'May',
-            6 => 'June',
-            7 => 'July',
-            8 => 'August',
-            9 => 'September',
-            10 => 'October',
-            11 => 'November',
-            12 => 'December'
-        );
+        $monthName = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         return view('attendance.history', compact('monthName'));
+    }
+
+    public function getHistory(Request $request)
+    {
+        $month = $request->month;
+        $year = $request->year;
+        $employee_id = Auth::guard('employee')->user()->employee_id;
+
+        $history = DB::table('attendance') 
+            ->where('employee_id', $employee_id)
+            ->whereRaw('MONTH(attd_date)="' . $month . '"')
+            ->whereRaw('YEAR(attd_date)="' . $year . '"')
+            ->orderBy('attd_date', 'desc')
+            ->get();
+
+        return view('attendance.history', compact('history', 'month', 'year'));
     }
 }

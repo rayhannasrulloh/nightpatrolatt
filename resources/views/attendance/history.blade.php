@@ -20,8 +20,7 @@
                 <div class="form-group">
                     <select name="month" id="month" class="form-control">
                         <option value="">Month</option>
-                        @for ($i = 1; $i <= 12; $i++)
-                            <option value="{{ $i }}" {{ date("m") == $i ? 'selected' : '' }}>{{ $monthName[$i] }}</option>
+                        @for ($i = 1; $i <= 12; $i++) <option value="{{ $i }}" {{ date("m") == $i ? 'selected' : '' }}>{{ $monthName[$i] }}</option>
                         @endfor
                     </select>
                 </div>
@@ -46,7 +45,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
-                    <button class="btn btn-primary btn-block">
+                    <button class="btn btn-primary btn-block" id="searchBtn">
                         <ion-icon name="search-outline"></ion-icon>
                         <strong>Search</strong>
                     </button>
@@ -55,5 +54,32 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col" id="showHistory"></div>
+</div>
 
 @endsection
+
+@push('myscript')
+<script>
+    $(function() {
+        $('#searchBtn').click(function(e) {
+            var month = $('#month').val();
+            var year = $('#tahun').val();
+            $.ajax({
+                type: "POST",
+                url: "/gethistory",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    month: month,
+                    year: year
+                },
+                cache: false,
+                success: function(response) {
+                    $('#showHistory').html(response);
+                }
+            });
+        });
+    });
+</script>
+@endpush
