@@ -11,6 +11,7 @@
     <div class="right"></div>
 </div>
 @endsection
+
 @section('content')
 <br><br><br>
 <div class="row">
