@@ -26,7 +26,7 @@ class DashboardController extends Controller
 
         //select 
         $attendance_recap = DB::table('attendance')
-        ->selectRaw('COUNT(employee_id) as total_attendance, SUM(IF(clock_in > "00:01",1,0)) as total_late')
+        ->selectRaw('COUNT(employee_id) as total_attendance, SUM(IF(clock_in > "00:10",1,0)) as total_late')
         ->where('employee_id', $employee_id)
         ->whereRaw('MONTH(attd_date)="'.$this_month.'"')
         ->whereRaw('YEAR(attd_date)="'.$this_year.'"')

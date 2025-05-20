@@ -23,6 +23,6 @@ Route::middleware(['auth:employee'])->group(function () {
     Route::post('/attendance/{employee_id}/updateprofile',[AttendanceController::class, 'updateprofile']);
 
     Route::get('/attendance/history',[AttendanceController::class, 'history']);
-    Route::post('/gethistory',[AttendanceController::class, 'getHistory']);
+    Route::post('/gethistory',[AttendanceController::class, 'gethistory']);
     
 });

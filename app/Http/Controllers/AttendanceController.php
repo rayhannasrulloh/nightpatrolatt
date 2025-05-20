@@ -155,19 +155,19 @@ class AttendanceController extends Controller
         return view('attendance.history', compact('monthName'));
     }
 
-    public function getHistory(Request $request)
+    public function gethistory(Request $request)
     {
         $month = $request->month;
         $year = $request->year;
         $employee_id = Auth::guard('employee')->user()->employee_id;
 
-        $history = DB::table('attendance') 
-            ->where('employee_id', $employee_id)
+        $history = DB::table('attendance')
             ->whereRaw('MONTH(attd_date)="' . $month . '"')
             ->whereRaw('YEAR(attd_date)="' . $year . '"')
-            ->orderBy('attd_date', 'desc')
+            ->where('employee_id', $employee_id)
+            ->orderBy('attd_date')
             ->get();
 
-        return view('attendance.history', compact('history', 'month', 'year'));
+        return view('attendance.history', compact('history'));
     }
 }

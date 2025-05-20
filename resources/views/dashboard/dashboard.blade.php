@@ -125,7 +125,7 @@
             <div class="col-3">
                 <div class="card">
                     <div class="card-body text-center" style="padding: 12px 12px !important;">
-                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">{{ $attendance_recap -> total_attendance }}</span>
+                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">{{ $attendance_recap->total_attendance }}</span>
                         <ion-icon name="accessibility-outline" style="font-size: 1.6rem;" class="text-primary"></ion-icon>
                         <br>
                         <span style="font-size: 0.8rem">Present</span>
@@ -155,7 +155,7 @@
             <div class="col-3">
                 <div class="card">
                     <div class="card-body text-center" style="padding: 12px 12px !important;">
-                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">{{ $attendance_recap -> total_late }}</span>
+                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">{{ $attendance_recap->total_late }}</span>
                         <ion-icon name="alarm-outline" style="font-size: 1.6rem;" class="text-warning"></ion-icon>
                         <br>
                         <span style="font-size: 0.8rem">Late</span>
