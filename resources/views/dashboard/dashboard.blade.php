@@ -132,7 +132,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            {{-- <div class="col-3">
                 <div class="card">
                     <div class="card-body text-center" style="padding: 12px 12px !important;">
                         <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">0</span>
@@ -141,8 +141,8 @@
                         <span style="font-size: 0.8rem">Permit</span>
                     </div>
                 </div>
-            </div>
-            <div class="col-3">
+            </div> --}}
+            {{-- <div class="col-3">
                 <div class="card">
                     <div class="card-body text-center" style="padding: 12px 12px !important;">
                         <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">0</span>
@@ -151,7 +151,7 @@
                         <span style="font-size: 0.8rem">Sick</span>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-3">
                 <div class="card">
                     <div class="card-body text-center" style="padding: 12px 12px !important;">

@@ -49,7 +49,7 @@ class AttendanceController extends Controller
         $file = $folderPath . $fileName;
         
         
-        if($radius > 1500000000) {
+        if($radius > 1500) {
             echo "error|Sorry, you are outside the office radius, your radius {$radius} meter|radius";
             return;
         } else {

@@ -71,9 +71,13 @@
 
                     <div class="form-links mt-2">
                         <div>
-                            <a href="page-register.html">Register Now</a>
+                            {{-- <a href="page-register.html">Register Now</a> --}}
+                            <p>Please contact developer for register xixixi</p>
                         </div>
-                        <div><a href="page-forgot-password.html" class="text-muted">Forgot Password?</a></div>
+                        <div>
+                            {{-- <a href="page-forgot-password.html" class="text-muted">Forgot Password?</a> --}}
+                            <p>Forgot Password? Please contact developer</p>
+                        </div>
                     </div>
 
                     <div class="form-button-group">
