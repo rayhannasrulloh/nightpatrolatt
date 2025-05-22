@@ -25,7 +25,6 @@
     </div>
     <!-- * loader -->
 
-
     <!-- App Capsule -->
     <div id="appCapsule" class="pt-0">
 
@@ -42,7 +41,6 @@
             <div class="section mt-1 mb-5">
                 @php
                     $messageWarning = Session::get('warning');
-
                 @endphp
                 @if (Session::get('warning'))
                 <div class="alert alert-outline-warning">
@@ -72,7 +70,7 @@
                     <div class="form-links mt-2">
                         <div>
                             {{-- <a href="page-register.html">Register Now</a> --}}
-                            <p>Please contact developer for register xixixi</p>
+                            <p>Please contact developer for register</p>
                         </div>
                         <div>
                             {{-- <a href="page-forgot-password.html" class="text-muted">Forgot Password?</a> --}}
@@ -80,10 +78,9 @@
                         </div>
                     </div>
 
-                    <div class="form-button-group">
+                    <div class="form-button-group w-50 mx-auto mt-3">
                         <button type="submit" class="btn btn-success btn-block btn-lg">Log in</button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -91,8 +88,6 @@
 
     </div>
     <!-- * App Capsule -->
-
-
 
     <!-- ///////////// Js Files ////////////////////  -->
     <!-- Jquery -->

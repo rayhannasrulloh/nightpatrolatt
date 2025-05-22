@@ -19,8 +19,8 @@ class DashboardController extends Controller
         
         $history_this_month = DB::table('attendance')
             ->where('employee_id', $employee_id)
-            ->whereRaw('MONTH(attd_date)="'.$this_month.'"')
-            ->whereRaw('YEAR(attd_date)="'.$this_year.'"')
+            ->whereMonth('attd_date','=',$this_month)
+            ->whereYear('attd_date','=',$this_year)
             ->orderBy('attd_date')
             ->get();
 
@@ -59,8 +59,8 @@ class DashboardController extends Controller
         $permitRecap = DB::table('permit')
         ->selectRaw('SUM(IF(status = "p",1,0)) as total_permit,SUM(IF(status = "s",1,0)) as total_sick')
         ->where('employee_id', $employee_id)
-        ->whereRaw('MONTH(permit_date)="'.$this_month.'"')
-        ->whereRaw('YEAR(permit_date)="'.$this_year.'"')
+        ->whereMonth('permit_date','=',$this_month)
+        ->whereYear('permit_date','=',$this_year)
         ->where('approval_status', 1)
         ->first();
 
