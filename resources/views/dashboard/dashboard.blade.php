@@ -132,26 +132,26 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-3">
+            <div class="col-3">
                 <div class="card">
                     <div class="card-body text-center" style="padding: 12px 12px !important;">
-                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">0</span>
+                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">{{ $permitRecap->total_permit }}</span>
                         <ion-icon name="newspaper-outline" style="font-size: 1.6rem;" class="text-success"></ion-icon>
                         <br>
                         <span style="font-size: 0.8rem">Permit</span>
                     </div>
                 </div>
-            </div> --}}
-            {{-- <div class="col-3">
+            </div>
+            <div class="col-3">
                 <div class="card">
                     <div class="card-body text-center" style="padding: 12px 12px !important;">
-                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">0</span>
+                        <span class="badge bg-danger" style="position: absolute; top:3px; right:10px; z-index: 999;">{{ $permitRecap->total_sick }}</span>
                         <ion-icon name="medkit-outline" style="font-size: 1.6rem;" class="text-danger"></ion-icon>
                         <br>
                         <span style="font-size: 0.8rem">Sick</span>
                     </div>
                 </div>
-            </div> --}}
+            </div>
             <div class="col-3">
                 <div class="card">
                     <div class="card-body text-center" style="padding: 12px 12px !important;">

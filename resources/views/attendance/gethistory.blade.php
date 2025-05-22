@@ -1,5 +1,10 @@
+@if ($history->isEmpty())
+<div class="alert alert-warning">
+    <strong>Warning!</strong> No attendance history found.
+</div>
+@endif
+
 @foreach ($history as $d)
-{{-- <p>{{ $d->attd_date }}</p> --}}
 <ul class="listview image-listview">
     <li>
         <div class="item">

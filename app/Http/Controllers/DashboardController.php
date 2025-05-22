@@ -55,6 +55,15 @@ class DashboardController extends Controller
             11 => 'November',
             12 => 'December'
         );
-        return view('dashboard.dashboard',compact('today_attendance','history_this_month','month_name','this_month','this_year', 'attendance_recap', 'leaderboard'));
+
+        $permitRecap = DB::table('permit')
+        ->selectRaw('SUM(IF(status = "p",1,0)) as total_permit,SUM(IF(status = "s",1,0)) as total_sick')
+        ->where('employee_id', $employee_id)
+        ->whereRaw('MONTH(permit_date)="'.$this_month.'"')
+        ->whereRaw('YEAR(permit_date)="'.$this_year.'"')
+        ->where('approval_status', 1)
+        ->first();
+
+        return view('dashboard.dashboard',compact('today_attendance','history_this_month','month_name','this_month','this_year', 'attendance_recap', 'leaderboard', 'permitRecap'));
     }
 }

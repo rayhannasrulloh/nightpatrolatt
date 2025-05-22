@@ -1,7 +1,7 @@
 @extends('layouts.attendance')
 @section('header')
 <!-- App Header -->
-<div class="appHeader bg-primary text-light">
+<div class="appHeader bg-success text-light">
     <div class="left">
         <a href="javascript:;" class="headerButton goBack">
             <ion-icon name="chevron-back-outline"></ion-icon>

@@ -27,5 +27,6 @@ Route::middleware(['auth:employee'])->group(function () {
 
     Route::get('/attendance/permit',[AttendanceController::class, 'permit']);
     Route::get('/attendance/createpermit',[AttendanceController::class, 'createpermit']);
+    Route::post('/attendance/storepermit',[AttendanceController::class, 'storepermit']);
     
 });

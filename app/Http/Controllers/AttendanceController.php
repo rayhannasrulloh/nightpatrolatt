@@ -174,20 +174,33 @@ class AttendanceController extends Controller
     public function permit()
     {
         $employee_id = Auth::guard('employee')->user()->employee_id;
-        // $permit = DB::table('permit')
-        //     ->where('employee_id', $employee_id)
-        //     ->orderBy('created_at', 'desc')
-        //     ->get();
-        return view('attendance.permit');
+        $permitData = DB::table('permit')->where('employee_id', $employee_id)->get();
+        $permitCount = DB::table('permit')->where('employee_id', $employee_id)->count();
+        return view('attendance.permit', compact('permitData', 'permitCount'));
     }
 
     public function createpermit()
     {
-        $employee_id = Auth::guard('employee')->user()->employee_id;
-        $permit = DB::table('permit')
-            ->where('employee_id', $employee_id)
-            ->orderBy('permit_date', 'desc')
-            ->get();
         return view('attendance.createpermit');
+    }
+    public function storepermit(Request $request)
+    {
+        $employee_id = Auth::guard('employee')->user()->employee_id;
+        $permit_date = $request->permit_date;
+        $status = $request->status;
+        $description = $request->description;
+
+        $data = [
+            'employee_id' => $employee_id,
+            'permit_date' => $permit_date,
+            'status' => $status,
+            'description' => $description
+        ];
+        $save = DB::table('permit')->insert($data);
+        if($save){
+            return redirect('/attendance/permit')->with('success', 'Permit request submitted successfully');
+        } else {
+            return redirect('/attendance/createpermit')->with('error', 'Failed to submit permit request');
+        }
     }
 }
