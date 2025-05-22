@@ -22,22 +22,10 @@
                     <select name="month" id="month" class="form-control">
                         <option value="">Month</option>
                         @php
-                            $monthName = [
-                                1 => 'January',
-                                2 => 'February',
-                                3 => 'March',
-                                4 => 'April',
-                                5 => 'May',
-                                6 => 'June',
-                                7 => 'July',
-                                8 => 'August',
-                                9 => 'September',
-                                10 => 'October',
-                                11 => 'November',
-                                12 => 'December'
-                            ];
+                            $monthName = ["","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                         @endphp
-                        @for ($i = 1; $i <= 12; $i++) <option value="{{ $i }}" {{ date("m") == $i ? 'selected' : '' }}>{{ $monthName[$i] }}</option>
+                        @for ($i = 1; $i <= 12; $i++) 
+                        <option value="{{ $i }}" {{ date("m") == $i ? 'selected' : '' }}>{{ $monthName[$i] }}</option>
                         @endfor
                     </select>
                 </div>
@@ -46,8 +34,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
-                    <select name="tahun" id="tahun" class="form-control">
-                        <option value="">Tahun</option>
+                    <select name="year" id="year" class="form-control">
+                        <option value="">Year</option>
                         @php
                             $startYear = 2023;
                             $currentYear = date('Y');
@@ -82,7 +70,7 @@
     $(function() {
         $('#searchBtn').click(function(e) {
             var month = $('#month').val();
-            var year = $('#tahun').val();
+            var year = $('#year').val();
             $.ajax({
                 type: "POST",
                 url: "/gethistory",
