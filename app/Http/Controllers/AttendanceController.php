@@ -162,8 +162,8 @@ class AttendanceController extends Controller
         $employee_id = Auth::guard('employee')->user()->employee_id;
 
         $history = DB::table('attendance')
-            ->whereRaw('MONTH(attd_date)="' . $month . '"')
-            ->whereRaw('YEAR(attd_date)="' . $year . '"')
+            ->whereMonth('attd_date', $month)
+            ->whereYear('attd_date', $year)
             ->where('employee_id', $employee_id)
             ->orderBy('attd_date')
             ->get();
