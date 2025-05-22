@@ -24,5 +24,8 @@ Route::middleware(['auth:employee'])->group(function () {
 
     Route::get('/attendance/history',[AttendanceController::class, 'history']);
     Route::post('/gethistory',[AttendanceController::class, 'gethistory']);
+
+    Route::get('/attendance/permit',[AttendanceController::class, 'permit']);
+    Route::get('/attendance/createpermit',[AttendanceController::class, 'createpermit']);
     
 });

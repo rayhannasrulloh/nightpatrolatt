@@ -170,4 +170,24 @@ class AttendanceController extends Controller
 
         return view('attendance.history', compact('history'));
     }
+
+    public function permit()
+    {
+        $employee_id = Auth::guard('employee')->user()->employee_id;
+        // $permit = DB::table('permit')
+        //     ->where('employee_id', $employee_id)
+        //     ->orderBy('created_at', 'desc')
+        //     ->get();
+        return view('attendance.permit');
+    }
+
+    public function createpermit()
+    {
+        $employee_id = Auth::guard('employee')->user()->employee_id;
+        $permit = DB::table('permit')
+            ->where('employee_id', $employee_id)
+            ->orderBy('permit_date', 'desc')
+            ->get();
+        return view('attendance.createpermit');
+    }
 }

@@ -20,13 +20,12 @@
                 </div>
             </div>
         </a>
-        {{-- <a href="#" class="item">
+        <a href="/attendance/permit" class="item">
             <div class="col">
-                <ion-icon name="document-text-outline" role="img" class="md hydrated"
-                    aria-label="document text outline"></ion-icon>
-                <strong>Izin</strong>
+                <ion-icon name="calendar-number-outline"></ion-icon>
+                <strong>Permit</strong>
             </div>
-        </a> --}}
+        </a>
         <a href="/editprofile" class="item">
             <div class="col">
                 <ion-icon name="people-outline" role="img" class="md hydrated" aria-label="people outline"></ion-icon>
